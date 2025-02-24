@@ -1,0 +1,47 @@
+<div class="youtube-area">
+    <div id="youtube"></div>
+</div>
+<script>
+    // YouTubeのiframe apiの読み込み
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // YouTubeの埋め込み
+    function onYouTubeIframeAPIReady() {
+        ytPlayer = new YT.Player(
+            'youtube',
+            {
+                videoId: 'yHvtNw9AkKo', // YouTubeのvideoIdを入れる
+                playerVars: {
+                    loop: 0, // ループしない
+                    controls: 0, // コントローラー表示
+                    autoplay: 1, // 自動再生オフ
+                    rel: 0,  // オススメ動画を表示させない
+                    showinfo: 1, // タイトル表示
+                    mute: 1,
+                },
+                events: {
+                    'onReady': function (event) {
+                        setTimeout(function () {
+                            onPlayerReady(event);
+                        }, 1000); // 1秒遅延
+                    }
+                }
+            }
+        );
+    }
+    function onPlayerReady(event) {
+        console.log("Player is ready");
+    
+        // 音量を設定（0〜100）
+        event.target.setVolume(100);
+    
+        // ミュートが解除されていない場合、解除する
+        if (event.target.isMuted()) {
+            event.target.unMute();
+        }
+    }
+    
+</script>

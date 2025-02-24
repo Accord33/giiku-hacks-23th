@@ -1,0 +1,142 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE 10+ */
+}
+
+.container::-webkit-scrollbar {
+    display: none;               /* Chrome, Safari, Opera */
+}
+
+.slide {
+    flex: 0 0 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.setting {
+    height: 30px;
+    width: 30px;
+    /* background-color: #f1f1f1; */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+.setting img {
+    height: 30px;
+    width: 30px;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* JavaScriptで制御 */
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 200;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    width: 60%;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 5px 10px;
+}
+
+.setting-item p {
+    margin: 0;
+}
+
+.switch {
+    margin: 0;
+    margin-top: 4px;
+    margin-left: 2px;
+    font-size:24px;
+    padding: 2px;
+    float: right;
+}
+.switch input[type=checkbox]{
+    position: absolute;
+    opacity: 0;
+}
+.switch label {
+    width: 2em;
+    height: 2em;
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+.switch label:before {
+    content: '';
+    position: absolute;
+    width: 2em;
+    height: 1em;
+    left: 0.1em;
+    transition: background 0.1s ease;
+    background: #f1f1f1;
+    border-radius: 50px;
+    box-shadow: inset 0px 1px 1px rgba(171,66,63,0.5);
+}
+.switch label:after {
+    content:'';
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    border-radius: 50px;
+    left: 0;
+    transition : all 0.2s ease;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+    background: #fcfff4;
+    animation: swich-off .2s ease-out;
+    z-index:2;
+}
+.switch input[type=checkbox]:checked+label:before {
+    background:#8ce196;
+    box-shadow: inset 0px 1px 1px rgba(84,152,140,0.5);
+}
+.switch input[type=checkbox]:checked+label:after {
+    animation: switch-on .2s ease-out;
+    left: 1.1em;
+}
